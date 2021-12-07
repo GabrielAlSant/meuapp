@@ -9,8 +9,16 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/visualizar', async function(req, res, next) {
-  dados = await Noticia.findById(req.query.id)
-  res.render('noticias/visualizar', { noticia:dados });
+  dado = await Noticia.findById(req.query.id)
+  res.json(dado)
 });
+
+router.get('/contador', async function(req, res, next) {
+  contador = await Noticia.count();
+  res.json({quantidade:contador});
+});
+
+
+
 
 module.exports = router;
